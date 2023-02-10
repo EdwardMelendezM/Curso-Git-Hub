@@ -1,0 +1,113 @@
+openapi: 3.0.0
+info:
+  title: Microservicio de Informes de Cultivos
+  version: 1.0.0
+  description: Este microservicio proporciona una API RESTful para crear, leer, actualizar y eliminar informes de cultivos.
+servers:
+  - url: https://agros.tech/informes-cultivos
+
+paths:
+  /informes:
+    post:
+      description: Crear un nuevo informe de cultivo
+      parameters:
+        - name: informe
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              fecha:
+                type: string
+                format: date
+              cultivo:
+                type: string
+              productor:
+                type: string
+              descripcion:
+                type: string
+      responses:
+        201:
+          description: Informe creado exitosamente
+        500:
+          description: Error al crear el informe
+    get:
+      description: Obtener una lista de informes de cultivo
+      responses:
+        200:
+          description: Lista de informes de cultivo
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fecha:
+                      type: string
+                      format: date
+                    cultivo:
+                      type: string
+                    productor:
+                      type: string
+                    descripcion:
+                      type: string
+        500:
+          description: Error al obtener los informes
+  /informes/{id}:
+    get:
+      description: Obtener un informe de cultivo por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Informe de cultivo
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fecha:
+                    type: string
+                    format: date
+                  cultivo:
+                    type: string
+                  productor:
+                    type: string
+                  descripcion:
+                    type: string
+        404:
+          description: Informe de cultivo no encontrado
+        500:
+          description: Error al obtener el informe
+    put:
+      description: Actualizar un informe de cultivo por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: informe
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              fecha:
+                type: string
+                format: date
+              cultivo:
+                type: string
+              productor:
+                type: string
+              descripcion:
+                type: string
+        404:
+          description: Informe de cultivo no encontrado
+        500:
+          description: Error al obtener el informe

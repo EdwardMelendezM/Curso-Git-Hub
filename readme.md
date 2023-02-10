@@ -5,3 +5,4 @@ Nombre y apellidos
 - Fabricio Yared Cardenas Huaman
 - Juan Diego Poccori Escalante
 - andy marcelo huaman quispe
+- Eliazar Noa Llasccanoa

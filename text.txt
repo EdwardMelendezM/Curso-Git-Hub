@@ -32,15 +32,19 @@ db.users.find().sort({$age:1}) Ordenar ascendentemente
 db.users.find().sort({$age:-1}) Ordenar desendentemente
 db.users.find().limit(5) Limitar 5 documentos 
 db.users.find().skip(5) Ignorar los primeros 5 documentos
+
+//Proyecciones
 db.users.find({},{----})   La parte '----' es para seleccionar los campos que se quiere obtener
+
+
 db.users.save({'username':'juan','password':'123',state:'active'}) Insertar o actualizar documentos
 db.users.update({id:object(123123132)},{$set:{username:'Nuevo nombre'}}) Actulizar documento el documento de Id a el valor de username:'Nuevo nombre'
 
 //Esto permite actualizar por default un solo documento
 db.users.update({id:Object(123123321)},{$unset:{color:true}}) Eliminar una caracteristica de la collecion 
 
-db.users.update({status:'inactive'},{$set:{status:'active'},{multi:true}})
 Actualizar de manera global a todos los objetos que cumplan la condicion
+db.users.update({status:'inactive'},{$set:{status:'active'},{multi:true}})
 
 db.users.updateOne -> Un solo documento
 db.users.updateMany -> Multiples documentos
@@ -52,5 +56,16 @@ db.users.updateOne({username:'user9'},{$set:{status:'inactive'}})
 db.users.updateMany({email:{$exists:true}},{$set:{bio:"añade tu biografia"}})
 
 //Incrementar numeros con update de forma rapida
-
 db.users.updateMany({},{$inc:{age:1}})
+
+
+//Eliminar objetos
+db.users.remove({status:'inactive'})
+
+
+//Eliminar colleciones
+db.users.drop();
+
+//Eliminar la base de datos
+db.dropDatabase();
+

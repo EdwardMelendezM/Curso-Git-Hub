@@ -107,7 +107,81 @@ paths:
                 type: string
               descripcion:
                 type: string
-        404:
-          description: Informe de cultivo no encontrado
+        responses:
+        201:
+          description: Informe editado exitosamente
         500:
-          description: Error al obtener el informe
+          description: Error al editar informe
+    delete:
+      description: Eliminar un informe de cultivo por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        responses:
+        201:
+          description: Informe elimiado exitosamente
+        500:
+          description: Error al eliminar informe
+
+          #coleccion Informe
+              fecha:
+                type: string
+                format: date
+              cultivo:
+                type: string
+              productor:
+                type: string
+              descripcion:
+                type: string
+
+          #coleccion productor
+              codigoProductor:
+                type: string
+              nombre:
+                type: string
+              edad:
+                type: int
+              direccion:
+                type: string
+
+          #coleccion cultivo
+              codigoCultivo:
+                type: string
+              nombre:
+                type: string
+              tipo:
+                type: string
+              ubicacion:
+                type: string
+    get:
+      description: Obtener una lista de informes de cultivo por palabras clave
+      parameters:
+        - name: palabraClave
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Lista de informes de cultivo que contengan la palabra clave
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fecha:
+                      type: string
+                      format: date
+                    cultivo:
+                      type: string
+                    productor:
+                      type: string
+                    descripcion:
+                      type: string
+        500:
+          description: Error al obtener los informes
